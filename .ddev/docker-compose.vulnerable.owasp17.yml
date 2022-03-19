@@ -1,0 +1,17 @@
+version: '3.7'
+
+networks:
+  default:
+    name: ddev_default
+
+services:
+
+  owasp:
+    container_name: ddev-${DDEV_SITENAME}-owasp17
+    image: bltsec/mutillidae-docker
+    restart: on-failure
+    mem_limit: 200m
+    cpus: 0.5
+    ports:
+      - 8281:80
+#      - 443:443

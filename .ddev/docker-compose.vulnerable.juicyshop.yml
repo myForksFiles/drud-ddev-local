@@ -1,0 +1,16 @@
+version: '3.7'
+
+networks:
+  default:
+    name: ddev_default
+
+services:
+
+  juiceshop:
+    container_name: ddev-${DDEV_SITENAME}-juiceshop
+    image: bkimminich/juice-shop
+    restart: on-failure
+    mem_limit: 200m
+    cpus: 0.5
+    ports:
+      - 8184:3000

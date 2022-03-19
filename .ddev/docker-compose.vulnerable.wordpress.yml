@@ -1,0 +1,22 @@
+version: '3.7'
+
+networks:
+  default:
+    name: ddev_default
+
+volumes:
+  wpress:
+
+services:
+
+  wodpress:
+    container_name: ddev-${DDEV_SITENAME}-vulwps
+    image: l505/vulnerablewordpress
+    restart: on-failure
+    mem_limit: 200m
+    cpus: 0.5
+    ports:
+      - 8280:80
+      - 3306:3306
+    volumes:
+      - wpress:/var/www/

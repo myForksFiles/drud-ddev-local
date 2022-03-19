@@ -1,0 +1,16 @@
+version: '3.7'
+
+networks:
+  default:
+    name: ddev_default
+
+services:
+
+  bricks:
+    container_name: ddev-${DDEV_SITENAME}-bricks
+    image: citizenstig/owaspbricks
+    restart: on-failure
+    mem_limit: 200m
+    cpus: 0.5
+    ports:
+      - 8181:80

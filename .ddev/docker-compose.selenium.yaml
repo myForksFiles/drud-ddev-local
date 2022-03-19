@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  selenium:
+    container_name: ddev-${DDEV_SITENAME}-selenium
+    image: selenium/standalone-chrome-debug:3.13.0-argon
+
+networks:
+  default:
+    name: ddev_default

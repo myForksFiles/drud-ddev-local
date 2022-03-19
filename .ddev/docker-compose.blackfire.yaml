@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  blackfire:
+    container_name: ddev-${DDEV_SITENAME}-blackfire
+    image: blackfire/blackfire
+    ports: [ '8707' ]
+    environment:
+      # Replace the values with your credentials.
+      BLACKFIRE_SERVER_ID: '<YOUR_SERVER_ID>'
+      BLACKFIRE_SERVER_TOKEN: '<YOUR_SERVER_TOKEN>'
+      BLACKFIRE_CLIENT_ID: '<YOUR_CLIENT_ID>'
+      BLACKFIRE_CLIENT_TOKEN: '<YOUR_CLIENT_TOKEN>'
+    hostname: ${DDEV_SITENAME}-blackfire
+  web:
+    links:
+      - blackfire:blackfire
+
+networks:
+  default:
+    name: ddev_default

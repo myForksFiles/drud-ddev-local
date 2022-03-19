@@ -1,0 +1,22 @@
+version: '3.7'
+
+networks:
+  default:
+    name: ddev_default
+
+volumes:
+  bwapp:
+
+services:
+
+  bwapp:
+    container_name: ddev-${DDEV_SITENAME}-bwapp
+    image: feltsecure/owasp-bwapp
+    restart: on-failure
+    mem_limit: 200m
+    cpus: 0.5
+    ports:
+      - 8182:80
+    volumes:
+      - bwapp:/var/www/
+

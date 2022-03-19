@@ -1,0 +1,39 @@
+version: '3.6'
+
+services:
+  gitlab:
+    container_name: ddev-${DDEV_SITENAME}-gitlab-ce
+    image: gitlab/gitlab-ce:latest
+    ports:
+      - "7080:80"
+      - "722:22"
+    restart: "no"
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - gitlab_data:/gitlab
+    external_links:
+      - "ddev-router:${DDEV_HOSTNAME}"
+    cap_add:
+      - SYS_ADMIN
+
+  gitlab-runner:
+    image: gitlab/gitlab-runner
+    container_name: ddev-${DDEV_SITENAME}-gitlab-runner
+    restart: always
+    depends_on:
+      - gitlab
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - gitlab_data:/gitlab
+
+volumes:
+  gitlab_data:
+
+networks:
+  default:
+    name: ddev_default
+
+#sudo gitlab-rake "gitlab:password:reset[root]"

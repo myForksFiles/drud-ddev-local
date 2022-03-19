@@ -1,0 +1,24 @@
+version: '3.7'
+
+networks:
+  default:
+    name: ddev_default
+
+volumes:
+    wpress:
+
+services:
+
+  cadvisor:
+    container_name: ddev-${DDEV_SITENAME}-cadvisor
+    image: google/cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - 8283:8080
+    restart: always
+    mem_limit: 200m
+    cpus: 0.5

@@ -1,0 +1,16 @@
+version: '3.7'
+
+networks:
+  default:
+    name: ddev_default
+
+services:
+
+  ninjaweb:
+    container_name: ddev-${DDEV_SITENAME}-ninjaweb
+    image: opendns/security-ninjas
+    restart: on-failure
+    mem_limit: 200m
+    cpus: 0.5
+    ports:
+      - 8185:80

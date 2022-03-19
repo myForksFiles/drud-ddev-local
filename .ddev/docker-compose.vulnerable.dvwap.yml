@@ -1,0 +1,21 @@
+version: '3.7'
+
+networks:
+  default:
+    name: ddev_default
+
+volumes:
+  bwapp:
+
+services:
+
+  dvwap:
+    container_name: ddev-${DDEV_SITENAME}-dvwap
+    image: vulnerables/web-dvwa
+    restart: on-failure
+    mem_limit: 200m
+    cpus: 0.5
+    ports:
+      - 8183:80
+    volumes:
+      - dbwap:/var/www/

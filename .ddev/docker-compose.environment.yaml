@@ -1,0 +1,18 @@
+version: '3.6'
+
+services:
+  web:
+    environment:
+      - environment=ddev
+      - APP_ENV=ddev
+      - APP=Development
+      - DBGP_IDEKEY=PHPSTORM
+      - IS_DDEV_PROJECT=true
+      - TYPO3_CONTEXT=Development
+      - WEBLICATION=Development
+      - WP_ENV=development
+  db:
+    environment:
+      - ENVIRONMENT=ddev
+      - APP=Development
+      - DDEV_IMPORTDIR=../sql
