@@ -3,14 +3,14 @@ version: '3.6'
 services:
   web:
     environment:
-      - environment=ddev
-      - APP_ENV=ddev
-      - APP=Development
-      - DBGP_IDEKEY=PHPSTORM
+      - APP_ENV=dev
+      - IS_DDEV=true
       - IS_DDEV_PROJECT=true
       - TYPO3_CONTEXT=Development
-      - WEBLICATION=Development
       - WP_ENV=development
+      - environment=ddev
+      - DBGP_IDEKEY=PHPSTORM
+      - PHP_IDE_CONFIG="serverName=local.ddev.site" /scripts/run-tests --class=MyClass
   db:
     environment:
       - ENVIRONMENT=ddev
